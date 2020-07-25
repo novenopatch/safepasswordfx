@@ -4,13 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class AccesLocal {
-   private static Connection connectionSqlite = null;
+public class AccesLocal extends Acces{
+
     private AccesLocal(){
         super();
+
     }
     public static Connection getInstance(){
-        if(AccesLocal.connectionSqlite == null){
+        if(connectionSqlite == null){
             try {
                 Class.forName("org.sqlite.JDBC");
 

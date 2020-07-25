@@ -15,25 +15,7 @@ public class Connect {
 	static Connection connectionSqlite = null;
 	static int idconnect ;
 	
-	//this comment block contain an methode who return an object connection for mysql database
-	/*
-	 * public static Connection conDB() { Properties props = new Properties(); try{
-	 * FileInputStream fis = new FileInputStream("conf.properties");
-	 * props.load(fis); Class.forName(props.getProperty("jdbc.driver.class"));
-	 * String url = props.getProperty("jdbc.url"); String dbLogin =
-	 * props.getProperty("jdbc.login"); String dbPassword =
-	 * props.getProperty("jdbc.password"); try{ Connection connection =
-	 * DriverManager.getConnection(url, dbLogin, dbPassword); return connection; }
-	 * catch (SQLException e) {
-	 * 
-	 * e.printStackTrace(); return null; } } catch (FileNotFoundException e) {
-	 * e.printStackTrace(); return null; } catch (IOException e) {
-	 * e.printStackTrace(); return null; } catch (ClassNotFoundException e) {
-	 * 
-	 * e.printStackTrace(); return null; } catch (Exception e) {
-	 * System.err.println("ConnectionUtil : "+e.getMessage()); return null; }
-	 * }
-	 */
+
 		
 	public static int idconnect() {
 		return idconnect;
@@ -41,32 +23,18 @@ public class Connect {
 	
 	//return object type connection off sqlite database 
 	public static Connection conSqlite (){
-		/*
-		try {
-			Class.forName("org.sqlite.JDBC");
-		
-			String url = "jdbc:sqlite:../javafxsolo/src/ressources/do/base.jin";
-		
-			Connection connectionSqlite = DriverManager.getConnection(url);
-			return connectionSqlite;
-		}
-		catch (SQLException e) {
-			
-			e.printStackTrace();
-			return null;
-		} catch (ClassNotFoundException e) {
-			
-			e.printStackTrace();
-			return null;
-		}
-		catch (Exception e) {
-            System.err.println("ConnectionUtil : "+e.getMessage());
-           return null;
-        }
-		*/
 		return AccesLocal.getInstance();
 	}
-	//test login(if username and user password is in database)
+
+
+	/**
+	 * test login(if username and user password is in database)
+	 * @param conn
+	 * @param login
+	 * @param password
+	 * @return
+	 * @throws Exception
+	 */
 	public static boolean dataTest(Connection conn,String login, String password) throws Exception{
 		
 		
@@ -99,7 +67,12 @@ public class Connect {
 			
 			return true;
 			
-	} 
+	}
+
+	/**
+	 * get prog version
+	 * @return
+	 */
 	public static String progV () {
 		 String sql = "SELECT * FROM T_prog_perf;";
 		 try(Connection connection =conSqlite();Statement statement = connection.createStatement();ResultSet  resultSet= statement.executeQuery(sql ) ){
