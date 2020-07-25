@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="bossBorderpane" prefHeight="533.0" prefWidth="661.0" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsolo.Controller.MainController">
+         <top>
+           <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+            <menus>
+              <Menu mnemonicParsing="false" text="Ficher">
+                <items>
+                  <MenuItem onAction="#myOriginalLaunch" text="Nouveau">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+
+                  <MenuItem mnemonicParsing="false" text="Preferences…" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+
+                  <MenuItem fx:id="quiter" mnemonicParsing="false" onAction="#quiterAction" text="Quit">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="Aide">
+                <items>
+                        <MenuItem mnemonicParsing="false" text="Aide" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+
+                  <MenuItem fx:id="about" mnemonicParsing="false" onAction="#aboutAction" text="About JinCoffre">
+                     </MenuItem>
+                </items>
+              </Menu>
+            </menus>
+          </MenuBar>
+         </top>
+   <center>
+      <BorderPane id="pane2" fx:id="pan2" prefHeight="499.0" prefWidth="572.0" BorderPane.alignment="CENTER">
+         <top>
+                   <HBox alignment="CENTER" prefHeight="92.0" prefWidth="572.0" BorderPane.alignment="CENTER">
+                       <children>
+                           <Label id="title" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="7.0" text="Ecran de Connection" textOverrun="CLIP" />
+                       </children>
+                   </HBox>
+         </top>
+         <center>
+                <VBox fx:id="VboxTo" prefHeight="415.0" prefWidth="571.0" BorderPane.alignment="CENTER">
+                <children>
+                   <HBox alignment="CENTER" prefHeight="111.0" prefWidth="572.0">
+                       <children>
+                            <TextField fx:id="TextField" layoutX="54.0" layoutY="140.0" prefHeight="24.0" prefWidth="339.0" promptText="Identifiant ou Email">
+                                 <font>
+                               <Font size="16.0" />
+                                </font>
+                            </TextField>
+                       </children>
+                   </HBox>
+                   <HBox alignment="CENTER" prefHeight="58.0" prefWidth="571.0">
+                       <children>
+                           <PasswordField fx:id="PasswordField" layoutX="54.0" layoutY="203.0" onKeyReleased="#ClavierListener" prefHeight="39.0" prefWidth="339.0" promptText="Mot de passe">
+                               <font>
+                                   <Font size="16.0" />
+                               </font>
+                        </PasswordField>
+                       </children>
+                   </HBox>
+                    <HBox alignment="CENTER" prefHeight="36.0" prefWidth="571.0">
+                        <children>
+                            <Label fx:id="lblErrors" alignment="CENTER" layoutX="79.0" layoutY="250.0" prefHeight="23.0" prefWidth="290.0" textFill="#ff6354">
+                                <font>
+                                    <Font size="16.0" />
+                                </font>
+                        </Label>
+                        </children>
+                    </HBox>
+                   <HBox fx:id="connectHbox" alignment="CENTER" prefHeight="57.0" prefWidth="571.0">
+                       <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                                 <Button id="btnforget" fx:id="btnforget" mnemonicParsing="false" onAction="#btnforgetAction" prefHeight="34.0" prefWidth="149.0" text="Forgot Password">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                           </children></HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                                 <Button id="btnConnection" fx:id="btnConnection" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="34.0" prefWidth="159.0" text="Se connecter">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                           </children>
+                        </HBox>
+                       </children>
+                     <opaqueInsets>
+                        <Insets left="10.0" right="10.0" />
+                     </opaqueInsets>
+                   </HBox>
+                   <HBox alignment="CENTER">
+                       <children>
+                              <AnchorPane prefHeight="23.0" prefWidth="310.0">
+                                 <children>
+                                 <Separator layoutY="9.0" prefHeight="5.0" prefWidth="339.0" />
+                                 <Label alignment="CENTER" layoutX="154.0" prefHeight="23.0" prefWidth="31.0" style="-fx-background-color: #fff;" text="Or" textFill="#5b5a5a" />
+                                 </children>
+                              </AnchorPane>
+                       </children>
+                   </HBox>
+                <HBox alignment="CENTER" prefHeight="62.0" prefWidth="571.0">
+                <children>
+                   <Button alignment="CENTER" layoutX="54.0" layoutY="389.0" mnemonicParsing="false" onMouseClicked="#firstLoginScreen" prefHeight="34.0" prefWidth="330.0" text="s'inscrire" />
+                </children>
+                </HBox>
+                </children>
+                </VBox>
+         </center>
+      </BorderPane>
+   </center>
+      </BorderPane>

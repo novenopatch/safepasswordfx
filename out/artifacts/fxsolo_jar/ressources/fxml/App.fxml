@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="954.0" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsolo.Controller.AppController">
+         <top>
+             <MenuBar BorderPane.alignment="CENTER">
+                  <menus>
+                      <Menu mnemonicParsing="false" text="Ficher">
+                          <items>
+                              <MenuItem mnemonicParsing="false" onAction="#myOriginalLaunch" text="Nouveau">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                              <MenuItem mnemonicParsing="false" onAction="#saveaction" text="Sauvegarder">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+
+                              <MenuItem mnemonicParsing="false" text="Preferences…" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+
+                              <MenuItem fx:id="quiter" mnemonicParsing="false" onAction="#quiterAction" text="Quit">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                          </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Aide" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+
+                              <MenuItem fx:id="about" mnemonicParsing="false" onAction="#aboutAction" text="About JinCoffre">
+                        </MenuItem>
+                          </items>
+                      </Menu>
+                  </menus>
+              </MenuBar>
+         </top>
+         <center>
+            <BorderPane prefHeight="396.0" prefWidth="612.0" BorderPane.alignment="CENTER">
+         <center>
+                  <TableView fx:id="tblData" prefHeight="251.0" prefWidth="654.0" BorderPane.alignment="CENTER">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+         </center>
+         <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="612.0" BorderPane.alignment="CENTER">
+               <children>
+                        <Label fx:id="lblStatus" prefHeight="32.0" prefWidth="354.0" text="Status :" />
+               </children>
+            </HBox>
+         </top></BorderPane>
+         </center>
+         <left>
+            <VBox alignment="CENTER" prefHeight="564.0" prefWidth="342.0">
+               <children>
+            <VBox alignment="CENTER" prefHeight="62.0" prefWidth="342.0">
+               <children>
+                              <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+                   <VBox alignment="CENTER" prefHeight="487.0" prefWidth="342.0">
+                       <children>
+                           <VBox alignment="CENTER" prefHeight="60.0" prefWidth="342.0">
+                               <children>
+                                   <TextField fx:id="txfUsername" prefHeight="32.0" prefWidth="278.0" promptText="nom d'utilisateur ou email" />
+                               </children>
+                           </VBox>
+                           <VBox alignment="CENTER" prefHeight="60.0" prefWidth="342.0">
+                               <children>
+                                   <PasswordField fx:id="txfPassword" prefHeight="32.0" prefWidth="326.0" promptText="Password" />
+                               </children>
+                           </VBox>
+                           <VBox alignment="CENTER" prefHeight="60.0" prefWidth="342.0">
+                               <children>
+                                   <DatePicker fx:id="pdate" prefHeight="32.0" prefWidth="352.0" promptText="date" />
+                               </children>
+                           </VBox>
+                           <VBox alignment="CENTER" prefHeight="220.0" prefWidth="322.0">
+                               <children>
+                                   <TextArea fx:id="txtAdescription" prefHeight="201.0" prefWidth="342.0" promptText="description" />
+                               </children></VBox>
+                           <VBox alignment="CENTER" prefHeight="71.0" prefWidth="342.0">
+                               <children>
+                                   <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveaction" prefHeight="32.0" prefWidth="278.0" text="Save" />
+                               </children>
+                           </VBox>
+                       </children>
+                   </VBox>
+               </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+            </VBox>
+         </left>
+      </BorderPane>

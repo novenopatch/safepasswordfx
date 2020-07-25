@@ -1,0 +1,91 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+
+.root{
+	/*-fx-background-color:#F0F4F8;*/
+	 /*-fx-alignment: center;*/
+	/*-fx-padding: 25px ;*/
+	/*-fx-spacing: 10px;*/
+
+}
+/*
+.label{
+	-fx-font-family: bold "Consolas bold";
+	-fx-font-size: 15px;
+	-fx-text-fill:#044E60;
+}
+*/
+.button{
+	-fx-font-family: Consolas;
+	-fx-font-size: 16px; 
+	-fx-background-color:#E66A6A; 
+	-fx-background-raduis: 5px ;
+	-fx-text-fill:white ; 
+	-fx-padding: 8px ;
+	
+	
+}
+.button:hover {
+	-fx-cursor: hand; 
+	-fx-background-color:#000; 
+	/*-fx-graphic:url("../icone/heartW.png");*/
+	/*-fx-effect: dropshadow(three-pass-box,rgba(0, 0,0.8), 30, 0, 0, 0);*/
+	/*-fx-effect: dropshadow(three-pass-box,rgba(0, 0,0.8), 10, 0, 0, 0);*/
+	
+	
+}
+
+#about{
+    -fx-graphic:url("../icone/10.png");
+}
+#btnConnection{
+	
+	-fx-background-color:#0984e3;
+	
+}
+#btnConnection:focused{
+    -fx-background-color: linear-gradient(#ff5400, #be1d00);
+}
+#btnConnection:hover{
+	-fx-background-color:#000;
+	-fx-text-fill: #0984e3;
+	/*
+	-fx-background-color: linear-gradient(#ff5400, #be1d00);
+	-fx-background-raduis : 30;
+	-fx-background-insets : 0;
+	-fx-text-fill: white;
+
+	*/
+	
+	-fx-effect: dropshadow(three-pass-box,rgba(0, 0,0.8), 10, 0, 0, 0);
+
+}
+
+#btnforget{
+	
+	-fx-text-fill: #0984e3; 
+	-fx-background-color:#F0F4F8;
+	
+	
+}
+#btnforget:hover{
+	-fx-effect: dropshadow(three-pass-box,rgba(0, 0,0.8), 30, 0, 0, 0);
+}
+/*
+#pan2{
+        -fx-background-image: url("../image/test.jpg");
+    /*-fx-background-color:#F0F4F8;*/
+}
+*/
+#title{
+	-fx-font-family: "Kristen ITC";
+	-fx-font-size: 20px;
+	-fx-text-fill:#044E54;
+	-fx-padding: 0 0 10px 0;
+}
+#status{
+	-fx-font-family: bold "Consolas bold";
+	-fx-font-size: 15px;
+	-fx-text-fill:#044E60;
+}
+
