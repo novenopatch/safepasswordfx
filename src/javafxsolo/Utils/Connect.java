@@ -113,7 +113,12 @@ public class Connect {
 		 }
 		return "";
 	}
-	//define if is first launch or not 
+
+	/**
+	 * define if is first launch or not
+	 * @return
+	 */
+	//
 	public static boolean fristLaunchTest () {
 		 String sql = "SELECT * FROM T_prog_perf Where progFirstlaunch = ? ";
          try (Connection conn =conSqlite() ; PreparedStatement preparedStatement = conn.prepareStatement(sql)){
@@ -132,9 +137,10 @@ public class Connect {
              return false;
          }
 	}
-	
-	
-	//update database after first launch
+
+	/**
+	 * update database after first launch
+	 */
 	public static void fristLaunchD() {
 		String strSql = "UPDATE T_prog_perf SET  progFirstlaunch=false WHERE  id_prog_perf=? ;";
 		try( Connection conn =conSqlite() ; PreparedStatement  preparedStatement = conn.prepareStatement( strSql ) ) { 
@@ -144,7 +150,11 @@ public class Connect {
             System.err.println(ex.getMessage());
         }
 	}
-	
+
+	/**
+	 * questionList
+	 * @return
+	 */
 	public static List<String> questionList() {
 		String strSql = "SELECT * FROM T_Question ;";
 		List<String> tab = new ArrayList<>();
@@ -162,6 +172,12 @@ public class Connect {
 			
 		
 	}
+
+	/**
+	 *
+	 * @param Question
+	 * @return
+	 */
 	public static int questionId(String Question){
 		int retour = 0;
 		try( Connection conn =conSqlite() ){
@@ -186,7 +202,13 @@ public class Connect {
             System.err.println(ex.getMessage());
             return 0;
         }
-	} 
+	}
+
+	/**
+	 * test if username exit
+	 * @param username
+	 * @return
+	 */
 	public static boolean userExist(String username){
 		try( Connection conn =conSqlite() ){
 			String strSql = "SELECT * FROM T_Users WHERE login=? ;";
