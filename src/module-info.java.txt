@@ -11,5 +11,6 @@ module javafxsolo {
 	opens javafxsolo to javafx.fxml;
 	exports javafxsolo to javafx.graphics;
 	opens javafxsolo.Controller to javafx.fxml;
+
 	exports javafxsolo.Controller to javafx.graphics;
 }

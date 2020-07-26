@@ -1,6 +1,6 @@
 package javafxsolo.Utils;
 
-import javax.naming.Context;
+
 import java.io.*;
 
 public abstract class Serializer {
