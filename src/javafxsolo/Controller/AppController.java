@@ -152,6 +152,7 @@ public class AppController extends MainController implements Initializable {
 		}
 		
 	}
+
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		tblData.setOnContextMenuRequested(e -> {
