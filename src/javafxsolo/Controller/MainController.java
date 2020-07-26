@@ -22,6 +22,8 @@ import javafx.util.Duration;
 import javafx.util.Pair;
 import javafxsolo.Main;
 import javafxsolo.Modele.Connect;
+import javafxsolo.Modele.User;
+import javafxsolo.Utils.Serializer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,6 +62,7 @@ public class MainController implements Initializable {
 	BorderPane pan2;
 	@FXML
 	MenuBar menuBar;
+	protected static String nomFic="user";
 
 
 
@@ -328,11 +331,39 @@ public class MainController implements Initializable {
 				p.printStackTrace();
 			}
 	
-}
-	
-	
+	}
+	/*
+	*recupère le dernier user
+	 */
+	protected void recupSerialize(){
+		User user = (User) Serializer.deSerialize(nomFic);
+		TextField.setText(user.getUserAnswer());
+	}
+
+	/**
+	 * test of if database is right
+	 */
+	private void databaseright(){
+		try(Connection conI = Connect.conSqlite()) {
+			if(  conI ==null) {
+				lblErrors.setTextFill(Color.TOMATO);
+				lblErrors.setText("Server Error : Check");
+				btnConnection.setDisable(true);
+				btnforget.setDisable(true);
+			}
+			else {
+				lblErrors.setTextFill(Color.GREEN);
+				lblErrors.setText("Hi,let's go!!");
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		recupSerialize();
 		VboxTo.setOnKeyReleased(e->{
 			if(e.getCode() == KeyCode.ENTER) {
 				loginT();
@@ -341,23 +372,7 @@ public class MainController implements Initializable {
 
 		pan2.setStyle("-fx-background-image: url(/ressources/image/test.jpg)");
 		about.setGraphic(new ImageView(getClass().getResource("/ressources/icone/10.png").toString()));
-		//test of if database is right
-		 try(Connection conI = Connect.conSqlite()) {
-				if(  conI ==null) {
-					lblErrors.setTextFill(Color.TOMATO);
-		            lblErrors.setText("Server Error : Check");
-		            btnConnection.setDisable(true);
-		            btnforget.setDisable(true);
-				}
-				else {
-					lblErrors.setTextFill(Color.GREEN);
-		            lblErrors.setText("Hi,let's go!!");
-				}
-			
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		 }
+		databaseright();
 
 	}
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="bossBorderpane" prefHeight="533.0" prefWidth="661.0" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsolo.Controller.MainController">
+<BorderPane fx:id="bossBorderpane" prefHeight="603.0" prefWidth="954.0" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxsolo.Controller.MainController">
          <top>
            <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
             <menus>

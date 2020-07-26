@@ -27,21 +27,12 @@ public class Main extends Application {
 	Parent root;
 	@Override
 	public  void start(@SuppressWarnings("exports") Stage primaryStage) {
-
-
-
 			myStage = new Stage();
 			myStage = primaryStage;
 
 			//ImageView likeImageView = new ImageView(getClass().getResource("../ressources/icone/heart.png").toString());
 			
-			
-			
-			
-			//myStage.setMinHeight(500.0);
-			//myStage.setMaxHeight(700.0);
-			//myStage.setMinWidth(700);
-			
+
 			//myStage.setFullScreen(false);
 			
 			//myStage.show();
@@ -51,7 +42,8 @@ public class Main extends Application {
 			myStage.setTitle("JinCoffre " + Connect.progV());
 			myStage.getIcons().add(rView);
 			myOriginalLaunch();
-			
+		   myStage.setMinHeight(603.0);
+		   myStage.setMaxHeight(954.0);
 			//myStage.setMaxWidth(1000);
 			//myStage.setResizable(false);
 			myStage.show();

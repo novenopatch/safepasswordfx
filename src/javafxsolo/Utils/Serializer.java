@@ -26,7 +26,7 @@ public abstract class Serializer {
 
     }
 
-    public static Object deSerialize(String filename, Context context){
+    public static Object deSerialize(String filename){
         try{
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream ois;

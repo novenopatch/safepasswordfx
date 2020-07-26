@@ -18,7 +18,8 @@ public class AccesLocal extends Acces{
             try {
                 Class.forName("org.sqlite.JDBC");
 
-                String url = "jdbc:sqlite:../javafxsolo/src/ressources/do/base.jin";
+                //String url = "jdbc:sqlite:../javafxsolo/src/ressources/do/base.jin";
+                String url = "jdbc:sqlite:do/base.jin";
 
                 Connection connectionSqlite = DriverManager.getConnection(url);
                 return connectionSqlite;
@@ -42,6 +43,9 @@ public class AccesLocal extends Acces{
             return connectionSqlite;
         }
     }
+
+
+
     public static String ajout(Connection conn, User user) {
         String st = "INSERT INTO T_Users   (Login, Password,userQuestion, userAnswer) VALUES (?,?,?,?)";
         try ( PreparedStatement stUpdate = conn.prepareStatement(st)) {

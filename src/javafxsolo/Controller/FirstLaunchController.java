@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class FirstLaunchController extends MainController implements Initializable {
 
 
-	private String nomFic="user";
+
 	@FXML
 	private ChoiceBox<String> choice;
 	@FXML
