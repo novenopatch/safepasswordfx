@@ -1,4 +1,6 @@
-package javafxsolo.Utils;
+package javafxsolo.Modele;
+import javafxsolo.Utils.AccesLocal;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

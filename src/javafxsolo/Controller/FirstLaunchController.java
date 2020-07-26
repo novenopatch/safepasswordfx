@@ -7,7 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafxsolo.Utils.Connect;
+import javafxsolo.Modele.Connect;
+import javafxsolo.Modele.User;
+import javafxsolo.Utils.AccesLocal;
+import javafxsolo.Utils.Serializer;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -17,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class FirstLaunchController extends MainController implements Initializable {
 
+
+	private String nomFic="user";
 	@FXML
 	private ChoiceBox<String> choice;
 	@FXML
@@ -50,6 +55,16 @@ public class FirstLaunchController extends MainController implements Initializab
 	 * 
 	 * } } }
 	 */
+	private void clearchamp(){
+		textUsername.clear();
+		txtfPassword.clear();
+		confirmPassword.clear();
+		answer.clear();
+	}
+	/**
+	 *
+	 * @return boolean
+	 */
 	private boolean checkifnotempty(){
 		if (answer.getText().isEmpty() && textUsername.getText().isEmpty() && confirmPassword.getText().isEmpty()
 				&& txtfPassword.getText().isEmpty() ) {
@@ -59,12 +74,7 @@ public class FirstLaunchController extends MainController implements Initializab
 			return false;
 		}
 	}
-	private void clearchamp(){
-		textUsername.clear();
-		txtfPassword.clear();
-		confirmPassword.clear();
-		answer.clear();
-	}
+
 	@FXML
 	private void saveaction(ActionEvent e) {
 		boolean problem =false;
@@ -89,7 +99,6 @@ public class FirstLaunchController extends MainController implements Initializab
 
 
 			else if(!equalsPassword().equals("cool")){
-				///System.out.println(" not Ok");
 				lblQuestion.setTextFill(Color.CHOCOLATE);
 				txtfPassword.clear();
 				confirmPassword.clear();
@@ -111,21 +120,7 @@ public class FirstLaunchController extends MainController implements Initializab
 		else {
 			if(equalsPassword().equals("cool") && !problem) {
 				if (saveData().equals("Success")) {
-					doTransition(fristLVbox,"");
-					new Thread(new Runnable() {
-						@Override
-						public void run() {
-							try {
-								Thread.sleep(500);
-								Platform.runLater(() -> {
-									myOriginalLaunch();
-								});
-							} catch (InterruptedException interruptedException) {
-								interruptedException.printStackTrace();
-							}
-
-						}
-					}).start();
+					afterSaveData();
 				}
 
 			}
@@ -133,28 +128,42 @@ public class FirstLaunchController extends MainController implements Initializab
 		}
 
 	}
+	public void afterSaveData(){
+		doTransition(fristLVbox,"");
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(500);
+					Platform.runLater(() -> {
+						myOriginalLaunch();
+					});
+				} catch (InterruptedException interruptedException) {
+					interruptedException.printStackTrace();
+				}
+
+			}
+		}).start();}
 	private String saveData() {
-		String st = "INSERT INTO T_Users   (Login, Password,userQuestion, userAnswer) VALUES (?,?,?,?)";
-		try (Connection conn = Connect.conSqlite(); PreparedStatement stUpdate = conn.prepareStatement(st)) {
-
-			stUpdate.setString(1, textUsername.getText());
-			stUpdate.setString(2, txtfPassword.getText());
-
-			stUpdate.setInt(3, Connect.questionId(choice.getValue().toString()));
-			stUpdate.setString(4, answer.getText());
-			stUpdate.executeUpdate();
+		User user = new User(
+				textUsername.getText(),
+				txtfPassword.getText(),
+				Connect.questionId(choice.getValue().toString()),
+				answer.getText()
+		);
+		Serializer.serialize(nomFic, user);
+		if (AccesLocal.ajout(Connect.conSqlite(), user).equals("Success")) {
+			Connect.fristLaunchD();//cette ligne désactive le first launch dans la db
 			lblQuestion.setTextFill(Color.GREEN);
 			lblQuestion.setText("Added Successfully");
-			Connect.fristLaunchD();//cette ligne désactive le first launch dans la db
 			return "Success";
 
-		} catch (SQLException ex) {
-			System.out.println(ex.getMessage());
+		} else {
 			lblQuestion.setTextFill(Color.TOMATO);
-			lblQuestion.setText(ex.getMessage());
-			return "Exception";
+			return null;
 		}
 	}
+
 
 	private String equalsPassword() {
 		if( txtfPassword.getText().equals(confirmPassword.getText()) ) {

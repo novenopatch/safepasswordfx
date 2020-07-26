@@ -6,7 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafxsolo.Utils.Connect;
+import javafxsolo.Modele.Connect;
+
 /*
  * @je suis josephHo,novenosexta77@gmail.com
  * j'ai fais l'effort d'ecrire les bloc important en anglais
@@ -87,7 +88,6 @@ public class Main extends Application {
 		
 	}
 private void myOriginalLaunch() {
-	
 	try {
 
 		
@@ -109,7 +109,6 @@ private void myOriginalLaunch() {
 		e.printStackTrace();
 	}
 }
-
 	public static void main(String[] args) {
 		
 		Application.launch(args);

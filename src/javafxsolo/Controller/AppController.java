@@ -13,7 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import javafxsolo.Main;
-import javafxsolo.Utils.Connect;
+import javafxsolo.Modele.Connect;
 
 import java.net.URL;
 import java.sql.PreparedStatement;

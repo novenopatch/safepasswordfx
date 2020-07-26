@@ -9,7 +9,9 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class AccesDistant  extends Acces{
-
+    /**
+     * contructeur vide
+     */
     private AccesDistant(){
         super();
     }

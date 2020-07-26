@@ -3,25 +3,14 @@ package javafxsolo.Controller;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
-import javafx.beans.binding.Binding;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.*;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -29,11 +18,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.Duration;
 import javafx.util.Pair;
 import javafxsolo.Main;
-import javafxsolo.Utils.Connect;
+import javafxsolo.Modele.Connect;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,9 +29,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.Scanner;
-
-import static javafx.scene.layout.BackgroundSize.AUTO;
 
 
 public class MainController implements Initializable {
@@ -134,191 +119,7 @@ public class MainController implements Initializable {
 		//stage.setMaximized(true);
 		Stage stage = ((Stage) ( ( (Node) b.getSource() ).getScene().getWindow() )) ;
 		stage.close();
-		Stage mito = new Stage();
-		VBox moto = new VBox();
 
-		ObservableList<PieChart.Data>pCD = FXCollections.observableArrayList(
-				new PieChart.Data("Valeur",42),
-				new PieChart.Data("Valeur1",30),
-				new PieChart.Data("Valeur2",300)//les portion
-
-
-		);
-		pCD.add(new PieChart.Data("valeur3", 91));
-
-		//Diagramme frommage
-		PieChart c = new PieChart(pCD);//on met en parèmete la collectionliste
-		c.setVisible(true);
-		c.setLabelLineLength(10);
-		c.setTitle("Diagramme frommage");//le titre du diagramme
-		c.setLegendSide(Side.RIGHT);
-		c.setStartAngle(90);//le debut des calcul se fait à 90
-		//moto.getChildren().add(c);
-
-		//diagramme en forme de courbe
-		//on doit créer les axe
-		//on peut mette aussi des catégories abxices avec : CategoryAxis();
-		NumberAxis xAxis = new NumberAxis();
-		NumberAxis yAxis = new NumberAxis();
-
-		xAxis.setSide(Side.TOP);
-		xAxis.setLabel("axe x");
-		LineChart<Number,Number> l= new LineChart<Number,Number>(xAxis,yAxis);
-		XYChart.Series<Number,Number> s1 = new XYChart.Series<Number,Number>();
-		s1.setName("sèrie1");
-		XYChart.Series<Number,Number> s2 = new XYChart.Series<Number,Number>();
-		s2.setName("sèrie2");
-		s1.getData().addAll(
-				new XYChart.Data<Number, Number>(10,10),
-				new XYChart.Data<Number, Number>(20,100),
-				new XYChart.Data<Number, Number>(30,20),
-				new XYChart.Data<Number, Number>(40,42),
-				new XYChart.Data<Number, Number>(50,66)
-		);
-		s2.getData().addAll(
-				new XYChart.Data<Number, Number>(10,30),
-				new XYChart.Data<Number, Number>(20,0),
-				new XYChart.Data<Number, Number>(30,40),
-				new XYChart.Data<Number, Number>(40,62),
-				new XYChart.Data<Number, Number>(50,23)
-		);
-		l.setCreateSymbols(true);//rajoute des point à la fin des intersections
-		l.getData().addAll(s1,s2);
-		//moto.getChildren().add(l);
-
-
-
-
-
-		//pour les aire presque identique au précédent
-		AreaChart<Number,Number> lo= new AreaChart<Number,Number>(xAxis,yAxis);
-		s1.getData().addAll(
-				new XYChart.Data<Number, Number>(10,10),
-				new XYChart.Data<Number, Number>(20,100),
-				new XYChart.Data<Number, Number>(30,20),
-				new XYChart.Data<Number, Number>(40,42),
-				new XYChart.Data<Number, Number>(50,66)
-		);
-		s2.getData().addAll(
-				new XYChart.Data<Number, Number>(10,30),
-				new XYChart.Data<Number, Number>(20,0),
-				new XYChart.Data<Number, Number>(30,40),
-				new XYChart.Data<Number, Number>(40,62),
-				new XYChart.Data<Number, Number>(50,23)
-		);
-		lo.setCreateSymbols(true);//rajoute des point à la fin des intersections
-		lo.getData().addAll(s1,s2);
-		//moto.getChildren().add(lo);
-
-		//pour les surface
-		StackedAreaChart<Number,Number> po= new StackedAreaChart<Number,Number>(xAxis,yAxis);
-		s1.getData().addAll(
-				new XYChart.Data<Number, Number>(10,10),
-				new XYChart.Data<Number, Number>(20,100),
-				new XYChart.Data<Number, Number>(30,20),
-				new XYChart.Data<Number, Number>(40,42),
-				new XYChart.Data<Number, Number>(50,66)
-		);
-		s2.getData().addAll(
-				new XYChart.Data<Number, Number>(10,30),
-				new XYChart.Data<Number, Number>(20,0),
-				new XYChart.Data<Number, Number>(30,40),
-				new XYChart.Data<Number, Number>(40,62),
-				new XYChart.Data<Number, Number>(50,23)
-		);
-		po.setCreateSymbols(true);//rajoute des point à la fin des intersections
-		po.getData().addAll(s1,s2);
-		//moto.getChildren().add(po);
-
-		//pour les graphique en bulle
-		BubbleChart<Number,Number> jo= new BubbleChart<Number,Number>(xAxis,yAxis);
-		s1.getData().addAll(
-				new XYChart.Data<Number, Number>(10,10,10),
-				new XYChart.Data<Number, Number>(20,100),
-				new XYChart.Data<Number, Number>(30,20),
-				new XYChart.Data<Number, Number>(40,42),
-				new XYChart.Data<Number, Number>(50,66)
-		);
-		s2.getData().addAll(
-				new XYChart.Data<Number, Number>(10,30,40),
-				new XYChart.Data<Number, Number>(20,0),
-				new XYChart.Data<Number, Number>(30,40),
-				new XYChart.Data<Number, Number>(40,62),
-				new XYChart.Data<Number, Number>(50,23)
-		);
-		jo.getData().addAll(s1,s2);
-		//moto.getChildren().add(jo);
-
-
-		//ce sont des graphiques en forme de forme (rectangle rond) des nuages de point
-		ScatterChart<Number,Number> pi= new ScatterChart<Number,Number>(xAxis,yAxis);
-		s1.getData().addAll(
-				new XYChart.Data<Number, Number>(10,10),
-				new XYChart.Data<Number, Number>(20,100),
-				new XYChart.Data<Number, Number>(30,20),
-				new XYChart.Data<Number, Number>(40,42),
-				new XYChart.Data<Number, Number>(50,66)
-		);
-		s2.getData().addAll(
-				new XYChart.Data<Number, Number>(10,30),
-				new XYChart.Data<Number, Number>(20,0),
-				new XYChart.Data<Number, Number>(30,40),
-				new XYChart.Data<Number, Number>(40,62),
-				new XYChart.Data<Number, Number>(50,23)
-		);
-		pi.getData().addAll(s1,s2);
-		//moto.getChildren().add(pi);
-
-
-		CategoryAxis xs = new CategoryAxis();
-		NumberAxis xy = new NumberAxis();
-
-		//ce sont des graphiques en forme de forme (rectangle rond) des nuages de point
-		BarChart<String,Number> ii= new BarChart<String,Number>(xs,xy );
-		XYChart.Series<String,Number> x1 = new XYChart.Series<String,Number>();
-		x1.setName("Pluie");
-		XYChart.Series<String,Number> x2 = new XYChart.Series<String,Number>();
-		x2.setName("Température");
-
-		x1.getData().addAll(
-				new XYChart.Data<String, Number>("Janvier",10),
-				new XYChart.Data<String, Number>("Fevier",15),
-				new XYChart.Data<String, Number>("Mars",20),
-				new XYChart.Data<String, Number>("Avril",32),
-				new XYChart.Data<String, Number>("Mai",16),
-				new XYChart.Data<String, Number>("Juin",30),
-				new XYChart.Data<String, Number>("juillet",100),
-				new XYChart.Data<String, Number>("Aout",9),
-				new XYChart.Data<String, Number>("Septembre",12),
-				new XYChart.Data<String, Number>("Octobre",3),
-				new XYChart.Data<String, Number>("Novembre",0),
-				new XYChart.Data<String, Number>("Décembre",5)
-		);
-		x2.getData().addAll(
-				new XYChart.Data<String, Number>("Janvier",33),
-				new XYChart.Data<String, Number>("Fevier",26),
-				new XYChart.Data<String, Number>("Mars",20),
-				new XYChart.Data<String, Number>("Avril",31),
-				new XYChart.Data<String, Number>("Mai",36),
-				new XYChart.Data<String, Number>("Juin",25),
-				new XYChart.Data<String, Number>("juillet",24.5d),
-				new XYChart.Data<String, Number>("Aout",20),
-				new XYChart.Data<String, Number>("Septembre",25),
-				new XYChart.Data<String, Number>("Octobre",25.5d),
-				new XYChart.Data<String, Number>("Novembre",26),
-				new XYChart.Data<String, Number>("Décembre",24)
-		);
-		ii.getData().addAll(x1,x2);
-		//moto.getChildren().add(ii);
-
-
-		StackedBarChart<String,Number> io= new StackedBarChart<String,Number>(xs,xy );
-		io.getData().addAll(x1,x2);
-		//moto.getChildren().add(io);
-
-
-		mito.setScene(new Scene(moto));
-		mito.show();
 		
 	}
 
@@ -435,23 +236,7 @@ public class MainController implements Initializable {
 			if(TextField.getText().isEmpty() || PasswordField.getText().isEmpty()) {
 
 				doTransition("btnConnection");
-				/*
-				AnimationTimer aT =new AnimationTimer() {
-					@Override
-					public void handle(long l) {
-						bossBorderpane.heightProperty().addListener(e->{
-							//pan2.setPrefHeight(bossBorderpane.getHeight()-menuBar.getHeight());
-							//VboxTo.setPrefHeight(pan2.getHeight()*0.75);
-						} );
-						bossBorderpane.widthProperty().addListener(e->{
-							//pan2.setPrefWidth(bossBorderpane.getWidth()*0.85);
-							//VboxTo.setPrefWidth(pan2.getWidth());
-						});
 
-					}
-				};aT.start();
-
-				 */
 				lblErrors.setTextFill(Color.TOMATO);
 				lblErrors.setText("Veillez saisir vos identifiants");
 	           status = "Error";
@@ -476,7 +261,10 @@ public class MainController implements Initializable {
 		}
 		return status;
 	}
-	//action after result connectTest
+
+	/**
+	 * action after result connectTest
+	 */
 	private void loginT() {
 		if (connectTest() .equals("Success")) {
 			doTransition("boxTo");
@@ -498,7 +286,10 @@ public class MainController implements Initializable {
 			}).start();
 		}
 	}
-	//myorginal launch is an methode who test if is the first launch or no,and make return the windows contain   at the main scene
+
+	/**
+	 * 	myorginal launch is an methode who test if is the first launch or no,and make return the windows contain   at the main scene
+	 */
 	protected void myOriginalLaunch() {
 		try {
 			if (Connect.fristLaunchTest()) {
@@ -547,15 +338,6 @@ public class MainController implements Initializable {
 				loginT();
 			}
 		});
-
-		/*
-		 * btnConnection.setOnKeyReleased(new EventHandler<KeyEvent>() {
-		 *
-		 * @Override public void handle(KeyEvent arg0) {
-		 * System.out.println(arg0.getCode());
-		 *
-		 * } });
-		 */
 
 		pan2.setStyle("-fx-background-image: url(/ressources/image/test.jpg)");
 		about.setGraphic(new ImageView(getClass().getResource("/ressources/icone/10.png").toString()));

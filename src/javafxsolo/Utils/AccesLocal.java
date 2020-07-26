@@ -1,7 +1,10 @@
 package javafxsolo.Utils;
 
+import javafxsolo.Modele.User;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class AccesLocal extends Acces{
@@ -37,6 +40,23 @@ public class AccesLocal extends Acces{
         }
         else {
             return connectionSqlite;
+        }
+    }
+    public static String ajout(Connection conn, User user) {
+        String st = "INSERT INTO T_Users   (Login, Password,userQuestion, userAnswer) VALUES (?,?,?,?)";
+        try ( PreparedStatement stUpdate = conn.prepareStatement(st)) {
+
+            stUpdate.setString(1, user.getUserName());
+            stUpdate.setString(2, user.getPassword());
+
+            stUpdate.setInt(3, user.getUserQuestion());
+            stUpdate.setString(4, user.getUserAnswer());
+            stUpdate.executeUpdate();
+            return "Success";
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return "Exception";
         }
     }
 }
