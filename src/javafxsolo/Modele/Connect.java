@@ -125,7 +125,15 @@ public class Connect {
             System.err.println(ex.getMessage());
         }
 	}
-
+	public static void updateNbSave(Connection conn ,int userid) {
+		String strSql = "UPDATE T_save SET  nb= nb+1 WHERE  saveAuthor=? ;";
+		try(PreparedStatement  preparedStatement = conn.prepareStatement( strSql ) ) {
+			preparedStatement.setInt(1,userid );
+			preparedStatement.executeUpdate();
+		}  catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
+	}
 	/**
 	 * questionList
 	 * @return

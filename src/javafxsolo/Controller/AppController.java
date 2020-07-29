@@ -53,18 +53,19 @@ public class AppController extends MainController implements Initializable {
 
 	private String saveData() {
 
-		String st = "INSERT INTO T_save (nb,Username, password, Date, Description, saveAuthor) VALUES (?,?,?,?,?,?)";
+		//String st = "INSERT INTO T_save (nb,Username, password, Date, Description, saveAuthor) VALUES (?,?,?,?,?,?)";
+		String st = "INSERT INTO T_save (Username, password, Date, Description, saveAuthor) VALUES (?,?,?,?,?)";
 		try (PreparedStatement stUpdate = conn.prepareStatement(st)) {
-			stUpdate.setInt(1, ++saveid);
-			stUpdate.setString(2, txfUsername.getText());
-			stUpdate.setString(3, txfPassword.getText());
-			stUpdate.setString(4, pdate.getValue().toString());
-			stUpdate.setString(5, txtAdescription.getText());
-			stUpdate.setInt(6, i);
+			//stUpdate.setInt(1, ++saveid);
+			stUpdate.setString(1, txfUsername.getText());
+			stUpdate.setString(2, txfPassword.getText());
+			stUpdate.setString(3, pdate.getValue().toString());
+			stUpdate.setString(4, txtAdescription.getText());
+			stUpdate.setInt(5, i);
 			stUpdate.executeUpdate();
 			lblStatus.setTextFill(Color.GREEN);
 			lblStatus.setText("Added Successfully");
-
+			Connect.updateNbSave(conn,i);
 			fetRowList();
 			clearFields();
 			return "Success";
@@ -121,7 +122,7 @@ public class AppController extends MainController implements Initializable {
 		try (ResultSet rs = conn.createStatement().executeQuery(SQL)) {
 
 			while (rs.next()) {
-				saveid = rs.getInt(2);
+				//saveid = rs.getInt(2);
 				// Iterate Row
 				ObservableList row = FXCollections.observableArrayList();
 				for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
