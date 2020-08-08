@@ -74,6 +74,14 @@ public class FirstLaunchController extends MainController implements Initializab
 			return false;
 		}
 	}
+	private String equalsPassword() {
+		if( txtfPassword.getText().equals(confirmPassword.getText()) ) {
+			return "cool";
+		}
+		else {
+			return "not cool";
+		}
+	}
 
 	@FXML
 	private void saveaction(ActionEvent e) {
@@ -128,22 +136,6 @@ public class FirstLaunchController extends MainController implements Initializab
 		}
 
 	}
-	public void afterSaveData(){
-		doTransition(fristLVbox,"");
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Thread.sleep(500);
-					Platform.runLater(() -> {
-						myOriginalLaunch();
-					});
-				} catch (InterruptedException interruptedException) {
-					interruptedException.printStackTrace();
-				}
-
-			}
-		}).start();}
 	private String saveData() {
 		User user = new User(
 				textUsername.getText(),
@@ -163,17 +155,26 @@ public class FirstLaunchController extends MainController implements Initializab
 			return null;
 		}
 	}
+	public void afterSaveData(){
+		doTransition(fristLVbox,"");
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(500);
+					Platform.runLater(() -> {
+						myOriginalLaunch();
+					});
+				} catch (InterruptedException interruptedException) {
+					interruptedException.printStackTrace();
+				}
+
+			}
+		}).start();}
 
 
-	private String equalsPassword() {
-		if( txtfPassword.getText().equals(confirmPassword.getText()) ) {
-			return "cool";
-		}
-		else {
-			return "not cool";
-		}
-	}
-	
+
+
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

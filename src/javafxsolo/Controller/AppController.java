@@ -19,6 +19,11 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.chrono.Chronology;
+import java.time.temporal.ChronoField;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AppController extends MainController implements Initializable {
@@ -156,6 +161,7 @@ public class AppController extends MainController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		pdate.setValue(LocalDate.now());
 		tblData.setOnContextMenuRequested(e -> {
 			System.out.println(e.getPickResult().toString());
 
